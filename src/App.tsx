@@ -1,3 +1,10 @@
 export default function App() {
-  return <h1>Travel List</h1>;
+  return (
+    <div className="app">
+      <header>Logo</header>
+      <div>Add Form</div>
+      <div>Packing List</div>
+      <footer>Stats</footer>
+    </div>
+  );
 }
