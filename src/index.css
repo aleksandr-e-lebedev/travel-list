@@ -26,3 +26,23 @@ body {
   display: grid;
   grid-template-rows: auto auto 1fr auto;
 }
+
+/* Logo Styles */
+
+.header {
+  background-color: #f4a226;
+}
+
+.header__title {
+  padding: 2.4rem 0;
+
+  font-family: 'Monoton';
+  font-size: 8rem;
+  font-weight: 400;
+
+  text-align: center;
+  text-transform: uppercase;
+
+  letter-spacing: -5px;
+  word-spacing: 30px;
+}
