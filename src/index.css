@@ -46,3 +46,50 @@ body {
   letter-spacing: -5px;
   word-spacing: 30px;
 }
+
+/* AddForm Styles */
+
+.add-form {
+  padding: 2.8rem 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+
+  background-color: #e5771f;
+}
+
+.add-form__title {
+  margin-right: 1.6rem;
+  font-size: 2.4rem;
+}
+
+.add-form__form-control {
+  border: none;
+  border-radius: 10rem;
+
+  padding: 1.2rem 3.2rem;
+
+  font-family: inherit;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #5a3e2b;
+
+  background-color: #ffebb3;
+  cursor: pointer;
+}
+
+/* https://habr.com/ru/articles/695194/ */
+
+.add-form__add-item-input:-webkit-autofill,
+.add-form__add-item-input:-webkit-autofill:hover,
+.add-form__add-item-input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #5a3e2b;
+  -webkit-box-shadow: 0 0 0px 40rem #ffebb3 inset;
+}
+
+.add-form__submit-button {
+  text-transform: uppercase;
+  background-color: #76c7ad;
+}
