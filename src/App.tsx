@@ -32,6 +32,12 @@ export default function App() {
     setItems(updatedItems);
   }
 
+  function handleClearItems() {
+    if (!items.length) return;
+    const confirmed = confirm('Are you sure you want to delete all items?');
+    if (confirmed) setItems([]);
+  }
+
   return (
     <div className="app">
       <Logo />
@@ -40,6 +46,7 @@ export default function App() {
         items={items}
         onToggleItem={handleToggleItem}
         onDeleteItem={handleDeleteItem}
+        onClearItems={handleClearItems}
       />
       <Stats items={items} />
     </div>

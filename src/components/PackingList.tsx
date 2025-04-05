@@ -5,6 +5,7 @@ interface Props {
   items: ListItemType[];
   onToggleItem: (itemId: number) => void;
   onDeleteItem: (itemId: number) => void;
+  onClearItems: () => void;
 }
 
 interface SortingType {
@@ -20,7 +21,11 @@ const Sorting: SortingType = {
 };
 
 export default function PackingList(props: Props) {
-  const { items, onToggleItem, onDeleteItem } = props;
+  const { items, onToggleItem, onDeleteItem, onClearItems } = props;
+
+  function handleButtonClick() {
+    onClearItems();
+  }
 
   return (
     <div className="packing-list">
@@ -48,7 +53,11 @@ export default function PackingList(props: Props) {
           </option>
         </select>
 
-        <button className="packing-list__action" type="button">
+        <button
+          className="packing-list__action"
+          type="button"
+          onClick={handleButtonClick}
+        >
           Clear List
         </button>
       </div>
