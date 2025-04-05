@@ -3,14 +3,19 @@ import { ListItemType } from '@/types';
 interface Props {
   item: ListItemType;
   onToggleItem: (itemId: number) => void;
+  onDeleteItem: (itemId: number) => void;
 }
 
 export default function ListItem(props: Props) {
-  const { item, onToggleItem } = props;
+  const { item, onToggleItem, onDeleteItem } = props;
   const { id, description, quantity, packed } = item;
 
   function handleCheckboxChange() {
     onToggleItem(item.id);
+  }
+
+  function handleButtonClick() {
+    onDeleteItem(item.id);
   }
 
   return (
@@ -29,7 +34,11 @@ export default function ListItem(props: Props) {
       >
         {quantity} {description}
       </span>
-      <button className="packing-list__delete-button" type="button">
+      <button
+        className="packing-list__delete-button"
+        type="button"
+        onClick={handleButtonClick}
+      >
         ❌
       </button>
     </li>

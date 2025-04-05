@@ -4,6 +4,7 @@ import { ListItemType } from '@/types';
 interface Props {
   items: ListItemType[];
   onToggleItem: (itemId: number) => void;
+  onDeleteItem: (itemId: number) => void;
 }
 
 interface SortingType {
@@ -19,13 +20,18 @@ const Sorting: SortingType = {
 };
 
 export default function PackingList(props: Props) {
-  const { items, onToggleItem } = props;
+  const { items, onToggleItem, onDeleteItem } = props;
 
   return (
     <div className="packing-list">
       <ul className="packing-list__list">
         {items.map((item) => (
-          <ListItem key={item.id} item={item} onToggleItem={onToggleItem} />
+          <ListItem
+            key={item.id}
+            item={item}
+            onToggleItem={onToggleItem}
+            onDeleteItem={onDeleteItem}
+          />
         ))}
       </ul>
 

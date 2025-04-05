@@ -24,11 +24,23 @@ export default function App() {
     setItems(updatedItems);
   }
 
+  function handleDeleteItem(itemToDeleteId: number) {
+    const updatedItems = items.filter((item) => {
+      return item.id !== itemToDeleteId;
+    });
+
+    setItems(updatedItems);
+  }
+
   return (
     <div className="app">
       <Logo />
       <AddForm onAddItem={handleAddItem} />
-      <PackingList items={items} onToggleItem={handleToggleItem} />
+      <PackingList
+        items={items}
+        onToggleItem={handleToggleItem}
+        onDeleteItem={handleDeleteItem}
+      />
       <Stats items={items} />
     </div>
   );
