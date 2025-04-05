@@ -1,6 +1,39 @@
-export default function AddForm() {
+import { useState } from 'react';
+
+import { ListItemType } from '@/types';
+
+interface Props {
+  onAddItem: (newItem: ListItemType) => void;
+}
+
+export default function AddForm({ onAddItem }: Props) {
+  const [quantity, setQuantity] = useState(1);
+  const [description, setDescription] = useState('');
+
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
+    if (!description) return;
+
+    const newItem: ListItemType = {
+      id: Date.now(),
+      description,
+      quantity,
+      packed: false,
+    };
+
+    onAddItem(newItem);
+
+    setQuantity(1);
+    setDescription('');
+  }
+
+  function handleSelectChange(e: React.ChangeEvent<HTMLSelectElement>) {
+    setQuantity(Number(e.target.value));
+  }
+
+  function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setDescription(e.target.value);
   }
 
   return (
@@ -10,6 +43,8 @@ export default function AddForm() {
         className="add-form__form-control add-form__count-select"
         name="count"
         id="count"
+        value={quantity}
+        onChange={handleSelectChange}
       >
         {Array.from({ length: 20 }, (_item, index) => (
           <option
@@ -27,6 +62,8 @@ export default function AddForm() {
         name="add-item"
         id="add-item"
         placeholder="Item..."
+        value={description}
+        onChange={handleInputChange}
       />
       <button
         className="add-form__form-control add-form__submit-button"
