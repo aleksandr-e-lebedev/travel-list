@@ -1,6 +1,7 @@
 import Logo from '@/components/Logo';
 import AddForm from '@/components/AddForm';
 import PackingList from '@/components/PackingList';
+import Stats from '@/components/Stats';
 
 import { ListItemType } from '@/types';
 
@@ -43,7 +44,7 @@ export default function App() {
       <Logo />
       <AddForm />
       <PackingList items={items} />
-      <footer>Stats</footer>
+      <Stats items={items} />
     </div>
   );
 }
