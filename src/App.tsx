@@ -14,11 +14,21 @@ export default function App() {
     setItems([...items, newItem]);
   }
 
+  function handleToggleItem(itemToToggleId: number) {
+    const updatedItems = items.map((item) => {
+      return item.id !== itemToToggleId
+        ? item
+        : { ...item, packed: !item.packed };
+    });
+
+    setItems(updatedItems);
+  }
+
   return (
     <div className="app">
       <Logo />
       <AddForm onAddItem={handleAddItem} />
-      <PackingList items={items} />
+      <PackingList items={items} onToggleItem={handleToggleItem} />
       <Stats items={items} />
     </div>
   );

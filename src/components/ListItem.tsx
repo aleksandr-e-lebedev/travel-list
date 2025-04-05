@@ -2,11 +2,16 @@ import { ListItemType } from '@/types';
 
 interface Props {
   item: ListItemType;
+  onToggleItem: (itemId: number) => void;
 }
 
 export default function ListItem(props: Props) {
-  const { item } = props;
+  const { item, onToggleItem } = props;
   const { id, description, quantity, packed } = item;
+
+  function handleCheckboxChange() {
+    onToggleItem(item.id);
+  }
 
   return (
     <li className="packing-list__list-item">
@@ -16,6 +21,7 @@ export default function ListItem(props: Props) {
         name="travel-item"
         id={`#${String(id)}-${description}`}
         checked={packed}
+        onChange={handleCheckboxChange}
       />
       <span
         className="packing-list__item-description"
