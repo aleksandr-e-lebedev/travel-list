@@ -1,35 +1,54 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
 
-function App() {
-  const [count, setCount] = useState(0)
+import Logo from '@/components/Logo';
+import AddForm from '@/components/AddForm';
+import PackingList from '@/components/PackingList';
+import Stats from '@/components/Stats';
+
+import { ListItemType } from '@/types';
+
+export default function App() {
+  const [items, setItems] = useState<ListItemType[]>([]);
+
+  function handleAddItem(newItem: ListItemType) {
+    setItems([...items, newItem]);
+  }
+
+  function handleToggleItem(itemToToggleId: number) {
+    const updatedItems = items.map((item) => {
+      return item.id !== itemToToggleId
+        ? item
+        : { ...item, packed: !item.packed };
+    });
+
+    setItems(updatedItems);
+  }
+
+  function handleDeleteItem(itemToDeleteId: number) {
+    const updatedItems = items.filter((item) => {
+      return item.id !== itemToDeleteId;
+    });
+
+    setItems(updatedItems);
+  }
+
+  function handleClearItems() {
+    if (!items.length) return;
+    const confirmed = confirm('Are you sure you want to delete all items?');
+    if (confirmed) setItems([]);
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="app">
+      <Logo />
+      <AddForm onAddItem={handleAddItem} />
+      <PackingList
+        items={items}
+        onToggleItem={handleToggleItem}
+        onDeleteItem={handleDeleteItem}
+        onClearItems={handleClearItems}
+      />
+      <Stats items={items} />
+    </div>
+  );
 }
-
-export default App

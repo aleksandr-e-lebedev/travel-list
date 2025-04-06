@@ -1,68 +1,179 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import url('https://fonts.googleapis.com/css2?family=Monoton&family=Quicksand:wght@500;700&display=swap');
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+html {
+  font-size: 62.5%;
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 2.4rem;
   font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  color: #5a3e2b;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+/* App Styles */
+
+.app {
+  width: 100%;
+  height: 100vh;
+
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+}
+
+/* Logo Styles */
+
+.header {
+  background-color: #f4a226;
+}
+
+.header__title {
+  padding: 2.4rem 0;
+
+  font-family: 'Monoton';
+  font-size: 8rem;
+  font-weight: 400;
+
+  text-align: center;
+  text-transform: uppercase;
+
+  letter-spacing: -5px;
+  word-spacing: 30px;
+}
+
+/* AddForm Styles */
+
+.add-form {
+  padding: 2.8rem 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+
+  background-color: #e5771f;
+}
+
+.add-form__title {
+  margin-right: 1.6rem;
+  font-size: 2.4rem;
+}
+
+.add-form__form-control {
+  border: none;
+  border-radius: 10rem;
+
+  padding: 1.2rem 3.2rem;
+
+  font-family: inherit;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #5a3e2b;
+
+  background-color: #ffebb3;
+  cursor: pointer;
+}
+
+/* https://habr.com/ru/articles/695194/ */
+
+.add-form__add-item-input:-webkit-autofill,
+.add-form__add-item-input:-webkit-autofill:hover,
+.add-form__add-item-input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #5a3e2b;
+  -webkit-box-shadow: 0 0 0px 40rem #ffebb3 inset;
+}
+
+.add-form__submit-button {
+  text-transform: uppercase;
+  background-color: #76c7ad;
+}
+
+/* PackingList Styles */
+
+.packing-list {
+  padding: 4rem 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3.2rem;
+
+  color: #ffebb3;
+  background-color: #5a3e2b;
+}
+
+.packing-list__list {
+  width: 80%;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  justify-content: center;
+  align-content: start;
+  gap: 1.2rem;
+
+  list-style: none;
+  overflow-y: scroll;
+}
+
+.packing-list__action {
+  margin: 0 0.8rem;
+  padding: 0.8rem 2.4rem;
+
+  border: none;
+  border-radius: 10rem;
+
+  font-family: inherit;
+  font-size: 1.4rem;
+  font-weight: 700;
+
+  color: #5a3e2b;
+  text-transform: uppercase;
+
+  background-color: #ffebb3;
+  cursor: pointer;
+}
+
+/* ListItem Styles */
+
+.packing-list__list-item {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.packing-list__checkbox {
+  width: 2rem;
+  height: 2rem;
+
+  accent-color: #e5771f;
+}
+
+.packing-list__delete-button {
+  border: none;
+  padding: 0.8rem;
+
+  font-size: 1.8rem;
+
+  background: none;
+  cursor: pointer;
+
+  transform: translateY(2px);
+}
+
+/* Stats Styles */
+
+.stats {
+  padding: 3.2rem 0;
+
+  font-weight: 700;
+  text-align: center;
+
+  background-color: #76c7ad;
 }
