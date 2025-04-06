@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import ListItem from './ListItem';
 import { ListItemType } from '@/types';
 
@@ -20,17 +22,42 @@ const Sorting: SortingType = {
   status: 'status',
 };
 
+type ValueType = SortingType[keyof SortingType];
+
 export default function PackingList(props: Props) {
   const { items, onToggleItem, onDeleteItem, onClearItems } = props;
+  const [sortBy, setSortBy] = useState<ValueType>('input');
+
+  let sortedItems: ListItemType[] = [];
+
+  function handleSelectChange(e: React.ChangeEvent<HTMLSelectElement>) {
+    setSortBy(e.target.value);
+  }
 
   function handleButtonClick() {
     onClearItems();
   }
 
+  if (sortBy === Sorting.input) {
+    sortedItems = items;
+  }
+
+  if (sortBy === Sorting.description) {
+    sortedItems = items
+      .slice()
+      .sort((a, b) => a.description.localeCompare(b.description));
+  }
+
+  if (sortBy === Sorting.status) {
+    sortedItems = items
+      .slice()
+      .sort((a, b) => Number(a.packed) - Number(b.packed));
+  }
+
   return (
     <div className="packing-list">
       <ul className="packing-list__list">
-        {items.map((item) => (
+        {sortedItems.map((item) => (
           <ListItem
             key={item.id}
             item={item}
@@ -41,7 +68,13 @@ export default function PackingList(props: Props) {
       </ul>
 
       <div className="packing-list__actions">
-        <select className="packing-list__action" name="sorting" id="sorting">
+        <select
+          className="packing-list__action"
+          name="sorting"
+          id="sorting"
+          value={sortBy}
+          onChange={handleSelectChange}
+        >
           <option className="packing-list__option" value={Sorting.input}>
             Sort by input order
           </option>
